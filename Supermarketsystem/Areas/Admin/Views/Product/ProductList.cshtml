@@ -1,0 +1,88 @@
+﻿@using System.Data;
+@model IEnumerable<Supermarketsystem.Areas.Admin.Models.ProductModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (@TempData["Message"] != null)
+{
+    <script>
+        alert('@TempData["Message"]');
+    </script>
+}
+
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-th-list"></i> Product Table</h1>
+        <p>Table to display analytical data effectively</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <p>
+                    <a class="btn btn-sm btn btn-primary" asp-controller="Product" asp-action="Edit">Add</a>
+                </p>
+                <div style="overflow-x:auto;">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>ProductID</th>
+                            <th>CategoryName</th>
+                            <th>SubcategoryName</th>
+                            <th>ProductName</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>ExpiryDate</th>
+                            <th>ProductImage</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ProductID</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.SubCategoryName</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.ProductQuantity</td>
+                                <td>@item.ProductPrice</td>
+                                <td>@item.ProductExpiryDate</td>
+                                <td>@item.ProductImage</td>
+                                <td>@item.Created</td>
+                                <td>@item.Modified</td>
+                                
+                                <td>
+                                    <a href="@Url.Action("Edit","Product", new {ProductID = item.ProductID}) " class="btn btn-primary" type="button">edit</a>
+
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete","Product", new {ProductID = item.ProductID}) " class="btn btn-danger" type="button">delete</a>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

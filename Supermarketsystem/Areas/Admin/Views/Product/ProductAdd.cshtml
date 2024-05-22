@@ -1,0 +1,268 @@
+﻿@model Supermarketsystem.Areas.Admin.Models.ProductModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-edit"></i> Form Components</h1>
+        <p>Bootstrap default form components</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Forms</li>
+        <li class="breadcrumb-item"><a href="#">Form Components</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form asp-controller="Product" asp-action="Save">
+                        <div>
+                            @Html.HiddenFor(model=>model.ProductID)
+                        </div>
+
+
+
+
+                        @* <div class="form-group has-success">
+                        <select  onchange="stateChange()" class="form-control" asp-for="CategoryID"
+                        asp-items="@(new SelectList(ViewBag.Dropdown,"CategoryID","CategoryName"))">
+
+                        <option value="none" disabled selected hidden>Select Country</option>
+                        </select>
+                        </div>
+                        <div class="form-group has-success">
+                        <select  class="form-control" asp-for="SubCategoryID"
+                        asp-items="@(new SelectList(ViewBag.SubcategoryDropDown,"SubCategoryID","SubCategoryName"))">
+
+                        <option disabled selected>Select Sub Category</option>
+                        </select>
+                        </div>*@
+                        <div class="form-group">
+
+                            <label>category</label>
+                            <select class="form-control " asp-for="CategoryID" onchange="stateChange()" asp-items="@(new SelectList(ViewBag.Dropdown,"CategoryID","CategoryName"))">
+                                <option value="none" selected disabled hidden>Select an Option</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>subcategory</label>
+                            <select class=" form-control" id="SubCategoryID" asp-for="SubCategoryID" asp-items="@(new SelectList(ViewBag.SubcategoryDropDown,"SubCategoryID","SubCategoryName"))">
+                                <option selected disabled hidden>Select an Option</option>
+
+                            </select>
+                        </div>
+                        @*
+                        <div class="form-group has-success">
+                        <label class="form-control-label" for="inputSuccess1" asp-for="CategoryID">CategoryID</label>
+                        <input class="form-control is-valid" asp-for="CategoryID" id="inputValid" type="text">
+                        </div>*@
+                        @*
+                        <div class="form-group has-success">
+                        <label class="form-control-label" for="inputSuccess1" asp-for="SubCategoryID">SubCategoryID</label>
+                        <input class="form-control is-valid" asp-for="SubCategoryID" id="inputValid" type="text">
+                        </div>
+                        *@
+
+
+
+                        <div class="form-group has-success">
+                            <label class="form-control-label" for="inputSuccess1" asp-for="ProductName">ProductName</label>
+                            <input class="form-control is-valid" asp-for="ProductName" id="inputValid" type="text">
+                        </div>
+
+                        <div class="form-group has-success">
+                            <label class="form-control-label" for="inputSuccess1" asp-for="ProductQuantity">ProductQuantity</label>
+                            <input class="form-control is-valid" asp-for="ProductQuantity" id="inputValid" type="text">
+                        </div>
+
+                        <div class="form-group has-success">
+                            <label class="form-control-label" for="inputSuccess1" asp-for="ProductPrice">ProductPrice</label>
+                            <input class="form-control is-valid" asp-for="ProductPrice" id="inputValid" type="text">
+                        </div>
+
+                        <div class="form-group has-success">
+                            <label class="form-control-label" for="inputSuccess1" asp-for="ProductExpiryDate">ProductExpiryDate</label>
+                            <input class="form-control is-valid" asp-for="ProductExpiryDate" id="inputValid" type="text">
+                        </div>
+
+                        <div class="form-group has-success">
+                            <label class="form-control-label" for="inputSuccess1" asp-for="ProductImage">ProductImage</label>
+                            <input class="form-control is-valid" asp-for="ProductImage" id="inputValid" type="text">
+                        </div>
+
+
+                        <div class="form-group mt-2">
+                            <button asp-action="Save" class="btn btn-primary">Save</button>
+                            <a class="btn btn-info" asp-action="GET">Back To List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="your-other-script.js"></script>
+
+
+
+
+<script>
+    function stateChange() {
+        var CategoryID = $("#CategoryID").val();
+
+        if (CategoryID !== "") {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("GetCascading", "Product")" + "?&CategoryID=" + CategoryID,
+                data: {},
+                dataType: "json",
+                success: function (Result) {
+                    console.log("result from database to ajax", Result);
+
+                    // Clear existing options
+                    $("#SubCategoryID").empty();
+
+                    // Add default option
+                    $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+
+                    // Add options from the result
+                    $.each(Result, function (key, value) {
+                        $("#SubCategoryID").append($("<option></option>").val(value.subCategoryID).html(value.subCategoryName));
+                        $("#SubCategoryID").val(Result[0].subCategoryID);
+                    });
+
+                    // Set the value of SubCategoryID
+                    if (Result.length > 0) {
+                       
+
+                        console.log($("#SubCategoryID").val(Result[0].subCategoryID));
+
+
+                    }
+                },
+                error: function (r) {
+                    alert("Error while loading combobox.");
+                }
+            });
+        } else {
+            // If CategoryID is empty, clear SubCategoryID options and set default
+            $("#SubCategoryID").empty();
+            $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+        }
+    }
+
+</script>
+@*<script>
+
+    function stateChange(SubCategoryID) {
+        var CategoryID = $("#CategoryID").val();
+        var SubCategoryID = $("#SubCategoryID").val();
+
+
+        if (CategoryID !== "") {
+            $("#SubCategoryID").empty();
+            $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("GetCascading","Product")" + "?&CategoryID=" + CategoryID,
+                data: {},
+                dataType: "json",
+                success: function (Result) {
+                    console.log("result from database to ajax", Result);
+                    $.each(Result, function (key, value) {
+                        $("#SubCategoryID").append($("<option></option>").val(value.subcategoryID).html(value.subCategoryName));
+
+                    });
+
+
+                },
+                error: function (r) {
+                    alert("Error while loading combobox.");
+                }
+            });
+        } else {
+            $("#SubCategoryID").empty();
+            $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+        }
+    }
+
+    $(document).ready(function () {
+        if ($("#CategoryID").val() != null) {
+            stateChange(parseInt($("#SubCategoryID").val()));
+        }
+    });
+
+</script>*@
+
+
+
+@*<script>
+
+    function stateChange(SubCategoryID) {
+        var CategoryID = $("#CategoryID").val();
+
+
+
+        if (CategoryID !== "") {
+            $("#SubCategoryID").empty();
+            $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+            $.ajax(
+                {
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@Url.Action("GetCascading","Product")" + "?&CategoryID=" + CategoryID,
+                    data: {},
+                    dataType: "json",
+                    success: function (Result) {
+                        console.log("result from database to ajax", Result)
+                        $.each(Result,
+                            function (key, value) {
+
+                                $("#SubCategoryID").append($("<option></option>").val(value.subcategoryID).html(value.subCategoryName));
+                            });
+                        if (SubCategoryID != null) {
+                            $("#SubCategoryID").val(SubCategoryID)
+                            $("#SubcategoryID").val() = SubCategoryID;
+                            console.log(SubCategoryID);
+                        }
+                    },
+                    error: function (r) {
+                        alert("Error while loading combobox.");
+                    }
+                });
+        } else {
+            $("#SubCategoryID").empty();
+            $("#SubCategoryID").append($("<option selected disabled hidden></option>").val("").html("Select an Option"));
+
+        }
+    }
+
+
+    $(document).ready(function () {
+        if ($("#CategoryID").val() != null) {
+            stateChange(parseInt($("#SubCategoryIDtateID").val()));
+
+        }
+    });
+
+</script>
+*@

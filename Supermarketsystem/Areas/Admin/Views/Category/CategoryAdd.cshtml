@@ -1,0 +1,55 @@
+﻿@model Supermarketsystem.Areas.Admin.Models.CategoryModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+
+<div class="app-title">
+    <div>
+        <h1><i class="fa fa-edit"></i> Form Components</h1>
+        <p>Bootstrap default form components</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Forms</li>
+        <li class="breadcrumb-item"><a href="#">Form Components</a></li>
+    </ul>
+    </div>
+
+<div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="row">
+                    <div class="col-lg-6">
+                    <form asp-controller="Category" asp-action="Save">
+                        <div>
+                            @Html.HiddenFor(model=>model.CategoryID)
+                        </div>
+
+
+    <div class="form-group has-success">
+    <label class="form-control-label" for="inputSuccess1" asp-for="CategoryName">CategoryName</label>
+    <input class="form-control is-valid" asp-for="CategoryName" id="inputValid" type="text">
+    </div>
+
+    <div class="form-group has-success">
+    <label class="form-control-label" for="inputSuccess1" asp-for="CategoryDescription">CategoryDescription</label>
+    <input class="form-control is-valid" asp-for="CategoryDescription" id="inputValid" type="text">
+    </div>
+
+
+
+
+
+                        <div class="form-group mt-2">
+                            <button asp-action="Save" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save</button>
+                            <a class="btn btn-info" asp-action="GET">Back To List</a>
+                        </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>

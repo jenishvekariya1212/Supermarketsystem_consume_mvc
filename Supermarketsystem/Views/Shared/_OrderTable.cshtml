@@ -1,0 +1,38 @@
+﻿<div class="row">
+
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+
+
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>productname</th>
+                            <th>quantity</th>
+                            <th>Productprice</th>
+                            <th>Orderdate</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.ProductPrice</td>
+                                <td>@item.OrderDate</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@{
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<section class="banner-area organic-breadcrumb">
+
+    <div class="container mt-5 ">
+        <div class="row justify-content-center ">
+            <div class="col-md-4 ">
+            <div class="text-center profile-card p-5 bg-warning">
+                    <img src=" https://thumbs.dreamstime.com/z/unknown-male-avatar-profile-image-businessman-vector-unknown-male-avatar-profile-image-businessman-vector-profile-179373829.jpg?ct =jpeg" alt="Profile Picture" class="profile-image mb-4">
+                <div class="profile-info">
+                        <h4> @ViewData["firstName"] @ViewData["lastName"]</h4>
+                    <p>Web Developer</p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Contact Information</h5>
+                        <ul class="list-unstyled">
+                                <li>Email: @ViewData["email"]</li>
+                            <li>Username:@ViewData["username"]</li>
+                            <li>Location: New York, USA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 ">
+                <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">About Me</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim turpis eget odio tincidunt, sed facilisis libero interdum. Vivamus efficitur eros ut felis interdum, vitae viverra turpis consectetur. Proin tristique, libero eget laoreet iaculis, velit dui aliquam libero, sed placerat quam dolor in nunc.</p>
+                </div>
+            </div>
+                <div class="card mt-3 ">
+                <div class="card-body">
+                    <h5 class="card-title">Skills</h5>
+                    <ul class="list-unstyled">
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>Bootstrap</li>
+                        <li>React</li>
+                        <li>Node.js</li>
+                    </ul>
+                </div>
+            </div>
+                <div class="card mt-3 bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Education</h5>
+                    <ul class="list-unstyled">
+                        <li>Bachelor's Degree in Computer Science - University XYZ (2015-2019)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">My Posts</h5>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">Post 1</a>
+                        <a href="#" class="list-group-item list-group-item-action">Post 2</a>
+                        <a href="#" class="list-group-item list-group-item-action">Post 3</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

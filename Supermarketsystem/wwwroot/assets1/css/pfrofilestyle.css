@@ -1,0 +1,42 @@
+.profile-card {
+    background-color: #ffffff; /* Card background color */
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-top: 20px;
+}
+
+    .profile-info h4 {
+        color: #343a40; /* Heading color */
+        margin-bottom: 5px;
+    }
+
+    .profile-info p {
+        color: #6c757d; /* Text color */
+        margin-bottom: 20px;
+    }
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #343a40; /* Card title color */
+}
+
+.card ul {
+    padding-left: 20px;
+}
